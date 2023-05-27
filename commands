@@ -1,0 +1,54 @@
+sudo apt-get update
+
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+
+sudo snap install kubectl — classic
+
+kubectl get po -A
+
+kubectl get nodes
+
+vi pod.yml
+[apiVersion: apps/v1
+kind: Deployment
+metadata:
+name: nginx-deployment
+spec:
+replicas: 1
+selector:
+matchLabels:
+app: nginx
+template:
+metadata:
+labels:
+app: nginx
+spec:
+containers:
+— name: nginx
+image: nginx
+ports:
+— containerPort: 80
+— -
+apiVersion: v1
+kind: Service
+metadata:
+name: nginx-service
+spec:
+selector:
+app: nginx
+ports:
+— protocol: TCP
+port: 80
+targetPort: 80
+type: LoadBalancer]
+
+kubectl apply -f pod.yml
+
+kubectl get pod
+
+
+
